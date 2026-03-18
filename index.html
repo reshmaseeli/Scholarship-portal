@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AP Scholarship Portal</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<header class="navbar">
+
+<h2>AP Scholarship Portal</h2>
+
+<button class="login-btn" onclick="loginPage()">Login</button>
+
+</header>
+
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Find the Best Scholarships <br>
+<span>in Andhra Pradesh</span>
+</h1>
+
+
+<!-- Feature Cards -->
+
+<div class="features">
+
+<div class="card" onclick="goToPage('education')">
+    🎓
+    <p>ssc, Inter/Deploma, Any Degree</p>
+</div>
+
+<div class="card" onclick="goToPage('income')">
+    💰
+    <p>Based Income</p>
+</div>
+
+<div class="card" onclick="goToPage('Residency')">
+    📍
+    <p>Residency based</p>
+</div>
+
+<div class="card" onclick="goToPage('merit')">
+    🏆
+    <p>Based Merit</p>
+</div>
+
+</div>
+
+
+<!-- Buttons -->
+
+<div class="buttons">
+
+<a href="scholarship.html">
+<button class="explore-btn">Explore Scholarships</button>
+</a>
+
+<button class="login-btn2" onclick="loginPage()">
+Login
+</button>
+
+</div>
+</section>
+
+
+<script>
+
+function exploreScholarships(){
+    alert("Scholarship page opened");
+}
+
+function loginPage(){
+    window.location.href="login.html";
+}
+
+// ✅ FIXED HERE
+function goToPage(type){
+    window.location.href = type + ".html";
+}
+
+</script>
+
+</body>
+
+</html>

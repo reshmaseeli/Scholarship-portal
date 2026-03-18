@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarship Details</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#00c6ff,#0072ff);
+    color: white;
+}
+
+/* CARD */
+.container {
+    max-width: 600px;
+    margin: 80px auto;
+    background: white;
+    color: black;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: fade 0.5s ease;
+}
+
+@keyframes fade {
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h2 {
+    color: #0072ff;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    border: none;
+    background: #ff7b00;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2 id="name"></h2>
+    <p><strong>Course:</strong> <span id="course"></span></p>
+    <p><strong>Type:</strong> <span id="type"></span></p>
+    <p><strong>Details:</strong></p>
+    <p id="details"></p>
+
+    <button class="btn" onclick="goBack()">⬅ Back</button>
+</div>
+
+<script>
+/* GET URL DATA */
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("name").innerText = params.get("name");
+document.getElementById("course").innerText = params.get("course");
+document.getElementById("type").innerText = params.get("type");
+document.getElementById("details").innerText = params.get("details");
+
+/* BACK BUTTON */
+function goBack(){
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Education Scholarships</title>
+
+<style>
+
+/* ===== BODY ===== */
+body{
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(-45deg, #74ebd5, #acb6e5, #89f7fe, #66a6ff);
+    background-size: 400% 400%;
+    animation: bg 10s ease infinite;
+}
+
+@keyframes bg{
+    0%{background-position:0%}
+    50%{background-position:100%}
+    100%{background-position:0%}
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    color:white;
+    padding:25px;
+}
+
+/* BOXES */
+.boxes{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.box{
+    width:250px;
+    padding:25px;
+    border-radius:15px;
+    color:white;
+    text-align:center;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.box:hover{ transform:scale(1.08); }
+
+.tenth{background:#ff7e5f;}
+.inter{background:#5b86e5;}
+.degree{background:#11998e;}
+
+/* LIST */
+.list-box{
+    display:none;
+    width:80%;
+    margin:40px auto;
+    padding:20px;
+    border-radius:10px;
+    color:white;
+}
+
+.theme-tenth{background:#ff7e5f;}
+.theme-inter{background:#5b86e5;}
+.theme-degree{background:#11998e;}
+
+.scholarship-item{
+    background:white;
+    color:black;
+    margin:10px;
+    padding:10px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* APPLY BUTTON */
+.apply-btn{
+    background:green;
+    color:white;
+    border:none;
+    padding:6px 10px;
+    cursor:pointer;
+}
+
+/* POPUP */
+.form-popup{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    width:300px;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.form-popup input{
+    width:100%;
+    margin:8px 0;
+    padding:8px;
+}
+
+.form-popup button{
+    width:100%;
+    padding:10px;
+    background:blue;
+    color:white;
+    border:none;
+}
+
+/* SUCCESS */
+.success{
+    color:green;
+    display:none;
+    text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🎓 Education Scholarships</h1>
+    <p>Find scholarships easily</p>
+</div>
+
+<!-- BOXES -->
+<div class="boxes">
+    <div class="box tenth" onclick="showList('tenth')">SSC</div>
+    <div class="box inter" onclick="showList('inter')">Inter / Diploma</div>
+    <div class="box degree" onclick="showList('degree')">Any Degree</div>
+</div>
+
+<!-- LIST -->
+<div class="list-box" id="scholarships">
+    <h2 id="title"></h2>
+    <div id="list"></div>
+    <br>
+    <button onclick="goBack()">← Back</button>
+</div>
+
+<!-- FORM -->
+<div class="form-popup" id="form">
+    <h3>Apply Scholarship</h3>
+    <input type="text" placeholder="Full Name">
+    <input type="text" placeholder="Aadhar Number">
+    <input type="file">
+    <button onclick="submitForm()">Submit Application</button>
+    <p class="success" id="successMsg">✅ Application Submitted Successfully</p>
+</div>
+
+<script>
+
+/* SHOW LIST */
+function showList(type){
+
+    let box = document.getElementById("scholarships");
+    let title = document.getElementById("title");
+    let list = document.getElementById("list");
+
+    box.style.display="block";
+    box.className="list-box";
+
+    let data=[];
+
+    if(type==="tenth"){
+        title.innerText="SSC Scholarships";
+        box.classList.add("theme-tenth");
+        data=["Pre-Matric Scholarship","SSC State Scheme"];
+    }
+
+    if(type==="inter"){
+        title.innerText="Inter / Diploma Scholarships";
+        box.classList.add("theme-inter");
+        data=["Post-Matric Scholarship","Central Scheme"];
+    }
+
+    if(type==="degree"){
+        title.innerText="Degree Scholarships";
+        box.classList.add("theme-degree");
+        data=["AICTE Scholarship","Merit Scheme"];
+    }
+
+    list.innerHTML="";
+
+    data.forEach(item=>{
+        list.innerHTML += `
+        <div class="scholarship-item">
+            ${item}
+        </div>`;
+    });
+}
+
+/* BACK */
+function goBack(){
+    document.getElementById("scholarships").style.display="none";
+}
+
+/* OPEN FORM (FIXED) */
+function openForm(){
+    document.getElementById("form").style.display="block";
+    document.getElementById("successMsg").style.display="none";
+}
+
+/* SUBMIT (FIXED) */
+function submitForm(){
+    document.getElementById("successMsg").style.display="block";
+}
+
+</script>
+
+</body>
+</html>

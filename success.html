@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Congratulations 🎉</title>
+
+<style>
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+background-color: rgb(42, 25, 193);
+background-image:url("../images/congrats-bg.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+/* Card */
+
+.card{
+background:rgba(21, 19, 19, 0.8);
+padding:40px;
+width:420px;
+border-radius:12px;
+text-align:center;
+color:rgb(235, 233, 239);
+box-shadow:0 15px 35px rgba(204, 195, 195, 0.6);
+}
+
+.card h1{
+color:#12dc12;
+margin-bottom:15px;
+}
+
+.card p{
+font-size:18px;
+margin-bottom:25px;
+}
+
+/* Button */
+
+button{
+padding:14px 28px;
+background:linear-gradient(to right,#ffb300,#ff9800);
+border:none;
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🎉 Congratulations!</h1>
+
+<p id="message"></p>
+
+<button onclick="applyScholarship()">Apply Scholarship</button>
+
+</div>
+
+
+<script>
+
+/* Get student name from login page */
+
+let name = localStorage.getItem("studentName");
+
+if(name){
+document.getElementById("message").innerHTML =
+"Dear <b>"+name+"</b>, you are eligible for the scholarship. Apply now to continue your academic success!";
+}
+else{
+document.getElementById("message").innerHTML =
+"You are eligible for the scholarship!";
+}
+
+
+/* Open application form */
+
+function applyScholarship(){
+
+window.location.href="apply.html";
+
+}
+
+</script>
+
+</body>
+</html>

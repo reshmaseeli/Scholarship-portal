@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Merit Scholarships</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+}
+
+.container {
+    width: 60%;
+    margin: 30px auto;
+}
+
+.header {
+    background: linear-gradient(to right, orange, darkorange);
+    color: white;
+    text-align: center;
+    padding: 35px;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.form-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkgreen;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">🎓 Merit Based Scholarships</div>
+
+    <!-- STEP 1: FILTER -->
+    <div class="form-box" id="filterBox">
+
+        <h2>Find Scholarships</h2>
+
+        <select id="caste">
+            <option value="">Select Caste</option>
+            <option value="OC">OC</option>
+            <option value="BC">BC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+        </select>
+
+        <input type="number" id="percentage" placeholder="Enter Percentage">
+
+        <button onclick="showScholarships()">Check Available Scholarships</button>
+
+    </div>
+
+    <!-- STEP 2: LIST -->
+    <div class="form-box" id="scholarshipList" style="display:none;">
+        <h2>Available Scholarships</h2>
+        <div id="list"></div>
+    </div>
+
+    <!-- STEP 3: FORM -->
+    <div class="form-box" id="applyForm" style="display:none;">
+
+        <h2 id="selectedScholarship"></h2>
+        <h3>Apply for Scholarship</h3>
+
+        <input type="text" id="fullName" placeholder="Full Name">
+
+        <div class="row">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Phone">
+        </div>
+
+        <input type="text" placeholder="Aadhar Number">
+
+        <div class="row">
+            <select id="course" onchange="updateYears()">
+                <option value="">Select Course</option>
+                <option value="Diploma">Diploma</option>
+                <option value="BTech">B.Tech</option>
+                <option value="MTech">M.Tech</option>
+                <option value="Masters">Masters</option>
+            </select>
+
+            <select id="year">
+                <option>Select Year</option>
+            </select>
+        </div>
+
+        <input type="text" placeholder="Family Income">
+        <input type="text" placeholder="Top Rank Scholarship">
+
+        <input type="file">
+
+        <button onclick="submitForm()">Submit Application</button>
+
+        <p id="msg"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+// COURSE → YEAR LOGIC
+function updateYears(){
+
+    let course = document.getElementById("course").value;
+    let year = document.getElementById("year");
+
+    year.innerHTML = "";
+
+    if(course === "Diploma" || course === "BTech"){
+        year.innerHTML = `
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+        `;
+    }
+
+    else if(course === "MTech" || course === "Masters"){
+        year.innerHTML = `
+            <option>1st Year</option>
+            <option>2nd Year</option>
+        `;
+    }
+
+    else{
+        year.innerHTML = `<option>Select Year</option>`;
+    }
+}
+
+
+// SHOW SCHOLARSHIPS
+function showScholarships(){
+
+    let caste = document.getElementById("caste").value;
+    let percentage = document.getElementById("percentage").value;
+
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+
+    if(caste === "" || percentage === ""){
+        alert("Fill all details");
+        return;
+    }
+
+    let scholarships = [];
+
+    if(percentage >= 90){
+        scholarships.push("National Merit Scholarship");
+    }
+
+    if(caste === "SC" || caste === "ST"){
+        scholarships.push("SC/ST Scholarship");
+    }
+
+    if(caste === "BC"){
+        scholarships.push("BC Scholarship");
+    }
+
+    if(percentage >= 75){
+        scholarships.push("State Scholarship");
+    }
+
+    scholarships.forEach(function(s){
+        list.innerHTML += `
+            <div class="card">
+                <b>${s}</b><br><br>
+                <button onclick="openForm('${s}')">Apply</button>
+            </div>
+        `;
+    });
+
+    document.getElementById("scholarshipList").style.display = "block";
+}
+
+
+// OPEN FORM
+function openForm(name){
+
+    document.getElementById("filterBox").style.display = "none";
+    document.getElementById("scholarshipList").style.display = "none";
+    document.getElementById("applyForm").style.display = "block";
+
+    document.getElementById("selectedScholarship").innerHTML = "Applying for: " + name;
+}
+
+
+// SUBMIT
+function submitForm(){
+
+    let name = document.getElementById("fullName").value;
+
+    if(name === ""){
+        alert("Enter name");
+        return;
+    }
+
+    document.getElementById("msg").innerHTML =
+        "<b style='color:green;'>Application submitted successfully!</b>";
+}
+
+</script>
+
+</body>
+</html>

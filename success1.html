@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Application Submitted</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2d6cdf, #5fa8ff);
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+    width:400px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.icon{
+    font-size:50px;
+    color:green;
+    margin-bottom:15px;
+}
+
+.title{
+    font-size:24px;
+    font-weight:600;
+    color:#333;
+    margin-bottom:10px;
+}
+
+.message{
+    color:#666;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+.btn{
+    background:#2d6cdf;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#1f4fbf;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="icon">✔</div>
+
+    <div class="title">Application Submitted</div>
+
+    <div class="message">
+        Your scholarship application has been successfully submitted.<br>
+        Our team will review your application and notify you shortly.
+    </div>
+
+    <button class="btn" onclick="goHome()">Go to Home</button>
+
+</div>
+
+<script>
+function goHome(){
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

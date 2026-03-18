@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Scholarship Portal</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+/* Background */
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background-image:url("../images/login-bg.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+}
+
+/* Container */
+
+.container{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:20px;
+}
+
+/* Welcome Message */
+
+#welcome{
+color:white;
+font-size:26px;
+font-weight:bold;
+text-align:center;
+}
+
+/* Login Box */
+
+.login-box{
+width:340px;
+background:rgba(0,0,0,0.85);
+padding:30px;
+border-radius:10px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Eligibility Box */
+
+.eligibility-box{
+width:340px;
+background:rgba(0,0,0,0.85);
+padding:30px;
+border-radius:10px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
+
+display:none;
+}
+
+/* Headings */
+
+h2{
+margin-bottom:15px;
+text-align:center;
+}
+
+/* Inputs */
+
+input{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:none;
+border-radius:5px;
+}
+
+/* Buttons */
+
+button{
+width:100%;
+padding:12px;
+background:linear-gradient(to right,#ffb300,#ff9800);
+border:none;
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* Messages */
+
+#loginMsg{
+margin-top:10px;
+font-weight:bold;
+text-align:center;
+}
+
+#result{
+margin-top:10px;
+font-weight:bold;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<p id="welcome"></p>
+
+<!-- LOGIN PORTION -->
+
+<div class="login-box">
+
+<h2>Student Login</h2>
+
+<input type="text" id="name" placeholder="Enter Name">
+
+<input type="password" placeholder="Enter Password">
+
+<button type="button" onclick="login()">Login</button>
+
+<p id="loginMsg"></p>
+
+</div>
+
+
+<!-- ELIGIBILITY PORTION -->
+
+<div class="eligibility-box" id="eligibilityBox">
+
+<h2>Eligibility Check</h2>
+
+<input type="number" id="income" placeholder="Enter Income">
+
+<input type="number" id="marks" placeholder="Enter Marks Percentage">
+
+<button type="button" onclick="checkEligibility()">Check Eligibility</button>
+
+<p id="result"></p>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* LOGIN FUNCTION */
+
+function login(){
+
+let name=document.getElementById("name").value;
+
+if(name!=""){
+
+document.getElementById("welcome").innerHTML="Welcome "+name;
+
+document.getElementById("loginMsg").innerHTML="Login Successful";
+document.getElementById("loginMsg").style.color="lightgreen";
+
+/* show eligibility */
+
+document.getElementById("eligibilityBox").style.display="block";
+
+}
+
+else{
+
+document.getElementById("loginMsg").innerHTML="Please enter name";
+document.getElementById("loginMsg").style.color="red";
+
+}
+
+}
+
+
+/* ELIGIBILITY CHECK */
+
+function checkEligibility(){
+
+let income=document.getElementById("income").value;
+let marks=document.getElementById("marks").value;
+
+if(income<=500000 && marks>=75){
+
+window.location.href="success.html";
+
+}
+
+else{
+
+document.getElementById("result").innerHTML="Not Eligible";
+document.getElementById("result").style.color="red";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
