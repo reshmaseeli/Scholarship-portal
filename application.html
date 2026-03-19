@@ -149,20 +149,20 @@ button {
 
 <input type="text" placeholder="Full Name">
 <input type="email" placeholder="Email">
-<input type="text" placeholder="Phone">
-<input type="text" placeholder="Aadhar Number">
+<input type="number" placeholder="Phone">
+<input type="number" placeholder="Aadhar Number">
 
-<select>
+<select id="cource" onchange="updatedYears()">
 <option>Select Course</option>
+<option>M.Tech</option>    
 <option>Degree</option>
 <option>B.Tech</option>
+<option>Deploma</option>    
 <option>Intermediate</option>
 </select>
 
-<select>
-<option>1st Year</option>
-<option>2nd Year</option>
-<option>3rd Year</option>
+<select id="year">
+<option>Select Year</option>
 </select>
 
 <input type="text" placeholder="Family Income">
@@ -179,10 +179,8 @@ button {
 </div>
 
 <script>
-
 /* GET DATA */
 let params = new URLSearchParams(window.location.search);
-
 document.getElementById("schName").innerText = params.get("name");
 document.getElementById("schCourse").innerText = "Course: " + params.get("course");
 document.getElementById("schType").innerText = "Type: " + params.get("type");
@@ -202,6 +200,29 @@ function submitForm(){
 /* BACK */
 function goBack(){
     window.history.back();
+}
+function updateYears(){
+
+    let course = document.getElementById("course").value;
+    let year = document.getElementById("year");
+
+    year.innerHTML = '<option>Select Year</option>';
+
+    if(course === "Intermediate"){
+        year.innerHTML += `<option>1st Year</option><option>2nd Year</option>`;
+    }
+    else if(course === "Diploma"){
+        year.innerHTML += `<option>1st Year</option><option>2nd Year</option><option>3rd Year</option>`;
+    }
+    else if(course === "B.Tech"){
+        year.innerHTML += `<option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option>`;
+    }
+    else if(course === "Degree"){
+        year.innerHTML += `<option>1st Year</option><option>2nd Year</option><option>3rd Year</option>`;
+    }
+    else if(course === "M.Tech"){
+        year.innerHTML += `<option>1st Year</option><option>2nd Year</option>`;
+    }
 }
 
 </script>
